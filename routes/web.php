@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DprController;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
-    return view('welcome');
+    $projects = DB::table('projects')->get();
+    return view('engineer-form', compact('projects'));
 });
 
 Route::get('/dashboard', function () {
@@ -65,8 +68,7 @@ Route::get('/ceo-dashboard', function () {
 
     return view('ceo-dashboard', compact('verifiedLogs', 'totalManpowerDeployed', 'totalVerifiedTasks', 'materialChallansCount'));
 });
-use App\Http\Controllers\DprController;
-use Illuminate\Support\Facades\DB;
+
 
 // Site Engineer Form Route
 Route::get('/engineer-form', function () {
